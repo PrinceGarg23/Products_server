@@ -7,7 +7,7 @@ dotenv.config();
 const cors = require('cors');
 app.use(cors({
   origin: 'https://products-jzopiy9th-princegarg23s-projects.vercel.app',
-  credentials: true
+  credentials: false,
 }));
 
 const PORT = process.env.PORT;
