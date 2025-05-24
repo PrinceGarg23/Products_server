@@ -7,8 +7,9 @@ dotenv.config();
 const cors = require('cors');
 app.use(cors({
   origin: 'https://products-jzopiy9th-princegarg23s-projects.vercel.app',
-  credentials: false,
+  credentials: true
 }));
+app.options('*', cors());
 
 const PORT = process.env.PORT;
 const connectDB = require('./config/db');
