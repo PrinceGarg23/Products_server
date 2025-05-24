@@ -4,12 +4,25 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 
+
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://products-jzopiy9th-princegarg23s-projects.vercel.app',
+  'https://products-ecru-mu.vercel.app'
+];
+
 const cors = require('cors');
 app.use(cors({
-  origin: 'https://products-jzopiy9th-princegarg23s-projects.vercel.app',
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS not allowed from ${origin}`));
+    }
+  },
   credentials: true
 }));
-app.options('/{*any}', cors());
 
 const PORT = process.env.PORT;
 const connectDB = require('./config/db');
