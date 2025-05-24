@@ -9,7 +9,7 @@ app.use(cors({
   origin: 'https://products-jzopiy9th-princegarg23s-projects.vercel.app',
   credentials: true
 }));
-app.options('*', cors());
+app.options('/{*any}', cors());
 
 const PORT = process.env.PORT;
 const connectDB = require('./config/db');
